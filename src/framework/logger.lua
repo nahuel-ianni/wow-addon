@@ -14,10 +14,10 @@ local LEVELS = {
 
 local function Log(level, ...)
     local count = select("#", ...)
-    local args = { ... }
-    
+    local args  = { ... }
+
     for i = 1, count do args[i] = tostring(args[i]) end
-    local msg = table.concat(args, " ", 1, count)
+    local msg = table.concat(args, " ")
 
     print(level.force
         and level.color:WrapTextInColorCode(PREFIX  .. " " .. msg)
