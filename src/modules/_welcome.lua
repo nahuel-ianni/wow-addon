@@ -9,8 +9,4 @@ function Module:OnInitialize()
     Log:Info(Module:GetName(), "Info message.")
     Log:Success(Module:GetName(), "Success message.")
     Log:Warning(Module:GetName(), "Warning message.")
-
-    Log:Warning()
-    Log:Warning(nil)
-    Log:Warning(true)
 end
