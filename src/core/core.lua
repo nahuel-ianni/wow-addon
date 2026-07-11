@@ -3,10 +3,6 @@ local addon = LibStub("AceAddon-3.0"):NewAddon(addonName)
 
 ns.Addon = addon
 
--- ─────────────────────────────────────────────────────────────────────────────────
---  Event Handlers
--- ─────────────────────────────────────────────────────────────────────────────────
-
 function addon:OnInitialize()
     self.db = LibStub("AceDB-3.0"):New(addonName:upper() .. "_DB", defaults, true)
     self.options = { name = addonName, type = "group", args = {} }
