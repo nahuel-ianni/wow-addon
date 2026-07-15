@@ -11,14 +11,18 @@ rm -rf "$BUILD_DIR"
 mkdir -p "$BUILD_DIR/Libs"
 rsync -a "$ROOT_DIR/src/" "$BUILD_DIR/"
 
+export C_STR=$(cd "$ROOT_DIR/src" && find core -type f -name "*.lua" 2>/dev/null | tr '/' '\\' | sort || true)
 export L_STR=$(cd "$ROOT_DIR/src" && find locales -type f -name "*.lua" 2>/dev/null | tr '/' '\\' | sort || true)
+export FR_STR=$(cd "$ROOT_DIR/src" && find framework -type f -name "*.lua" 2>/dev/null | tr '/' '\\' | sort || true)
+export FA_STR=$(cd "$ROOT_DIR/src" && find factories -type f -name "*.lua" 2>/dev/null | tr '/' '\\' | sort || true)
 export M_STR=$(cd "$ROOT_DIR/src" && find modules -type f -name "*.lua" 2>/dev/null | tr '/' '\\' | sort || true)
-export F_STR=$(cd "$ROOT_DIR/src" && find framework -type f -name "*.lua" 2>/dev/null | tr '/' '\\' | sort || true)
 
 perl -i -pe '
 BEGIN { undef $/; }
+s/\@CORE\@/$ENV{C_STR}/g;
 s/\@LOCALES\@/$ENV{L_STR}/g;
-s/\@FRAMEWORK\@/$ENV{F_STR}/g;
+s/\@FRAMEWORK\@/$ENV{FR_STR}/g;
+s/\@FACTORIES\@/$ENV{FA_STR}/g;
 s/\@MODULES\@/$ENV{M_STR}/g;
 ' "$BUILD_DIR/$ADDON_NAME.toc"
 

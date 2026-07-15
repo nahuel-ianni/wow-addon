@@ -4,12 +4,15 @@
 ## Version: @VERSION@
 ## Author: N. Ianni
 ## License: MIT
-## SavedVariables: A_DB
-## OptionalDeps: Ace3
+
 ## IconTexture: 236701
+## SavedVariables: A_DB
+## AddonCompartmentFunc: A_OnCompartmentClick
+
+## OptionalDeps: Ace3
 
 # -------------------------------------------------------------------------------------------
-# EXTERNAL LIBRARIES
+# DEPENDENCIES
 # -------------------------------------------------------------------------------------------
 
 Libs\LibStub\LibStub.lua
@@ -17,6 +20,7 @@ Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
 
 Libs\AceLocale-3.0\AceLocale-3.0.xml
 Libs\AceAddon-3.0\AceAddon-3.0.xml
+Libs\AceEvent-3.0\AceEvent-3.0.xml
 Libs\AceDB-3.0\AceDB-3.0.xml
 Libs\AceGUI-3.0\AceGUI-3.0.xml
 Libs\AceConfig-3.0\AceConfig-3.0.xml
@@ -25,10 +29,8 @@ Libs\AceConfig-3.0\AceConfig-3.0.xml
 # ADDON FILES
 # -------------------------------------------------------------------------------------------
 
-core\core.lua
-
+@CORE@
 @LOCALES@
-
 @FRAMEWORK@
-
+@FACTORIES@
 @MODULES@

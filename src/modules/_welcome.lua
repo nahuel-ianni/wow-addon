@@ -1,12 +1,14 @@
 local _, ns = ...
-local Module = ns.Addon:CreateModule("Welcome")
+local Module = ns.Addon:NewModule("WELCOME", "AceEvent-3.0")
 
-local Log = ns.Log
+function Module:OnEnable()
+    self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW")
+end
 
-function Module:OnInitialize()
-    Log:Debug(Module:GetName(), "Debug message.")
-    Log:Error(Module:GetName(), "Error message.")
-    Log:Info(Module:GetName(), "Info message.")
-    Log:Success(Module:GetName(), "Success message.")
-    Log:Warning(Module:GetName(), "Warning message.")
+function Module:OnDisable()
+    self:UnregisterAllEvents()
+end
+
+function Module:PLAYER_INTERACTION_MANAGER_FRAME_SHOW(...)
+    self.Log:Debug(Module:GetName(), ...)
 end
