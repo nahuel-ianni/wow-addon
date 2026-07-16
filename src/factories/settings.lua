@@ -1,1 +1,0 @@
-print("TODO: This will return settings options (toggle, button, number, slide, etc).")

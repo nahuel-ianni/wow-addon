@@ -20,7 +20,7 @@ function Module:PLAYER_ENTERING_WORLD(_, isInitialLogin)
         
         if completed then
             ContentTracking.StopTracking(ACHIEVEMENT, id, COLLECTED)
-            self.Log:Info(MSG:format(self.L["UNTRACK"], id, GetAchievementLink(id)))
+            self.Log:Info(MSG:format(self.L.UNTRACK, id, GetAchievementLink(id)))
         end
     end
 end

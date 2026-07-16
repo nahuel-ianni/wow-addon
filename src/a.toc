@@ -31,6 +31,6 @@ Libs\AceConfig-3.0\AceConfig-3.0.xml
 
 @CORE@
 @LOCALES@
-@FRAMEWORK@
 @FACTORIES@
+@FRAMEWORK@
 @MODULES@
