@@ -13,7 +13,7 @@ L["M_TRACKERS"]   = "Untrack achievements"
 --  Module Descriptions
 -- ─────────────────────────────────────────────────────────────────────────────────
 
-L["MD_CONTAINERS"] = "Invert the sorting order of the player bags."
+L["MD_CONTAINERS"] = "Invert the player's bag sorting order."
 L["MD_TRACKERS"]   = "Fix achievements getting stuck in the tracked state when completed by different characters."
 
 -- ─────────────────────────────────────────────────────────────────────────────────

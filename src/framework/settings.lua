@@ -4,7 +4,6 @@ function ns.Addon:CreateSettings()
     self._options = {
         name = addonName,
         type = "group",
-        -- childGroups = "tree",
         args = {}
     }
 
