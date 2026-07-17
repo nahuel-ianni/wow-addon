@@ -12,12 +12,20 @@ function ns.Addon:CreateSettings()
 end
 
 function ns.Addon:RegisterModuleOptions(module, settings)
-    self._options.args[module:GetName()] = {
-        type = "group",
-        name = module._name,
-        desc = module._desc,
-        args = settings:GetOptions(),
-    }
+    local category = module._category
+
+    if not self._options.args[category] then
+        self._options.args[category] = {
+            type = "group",
+            name = category,
+            args = {}
+        }
+    end
+
+    for key, args in pairs(settings:GetOptions()) do
+        local uniqueKey = module:GetName() .. "_" .. key
+        self._options.args[category].args[uniqueKey] = args
+    end
 end
 
 _G[addonName .. "_OnCompartmentClick"] = function()
