@@ -1,32 +1,37 @@
-local addonName = ...
-local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "enUS", true)
+local _, ns = ...
+local Module = ns.Addon:NewModule("ARTIFACTS")
 
 -- ─────────────────────────────────────────────────────────────────────────────────
---  Module Names
+--  Local Variables
 -- ─────────────────────────────────────────────────────────────────────────────────
 
-L["MN_ARTIFACTS"]  = "Artifact: Underlight's Angler"
-L["MN_CONTAINERS"] = "Sort bags"
-L["MN_TRACKERS"]   = "Untrack achievements"
+local UNDERLIGHT_ANGLER_ID = 133755
+
+local ArtifactUI = _G.C_ArtifactUI
+local CachedCallback = _G.C_ArtifactUI.GetArtifactTier
 
 -- ─────────────────────────────────────────────────────────────────────────────────
---  Module Descriptions
+--  Local Functions
 -- ─────────────────────────────────────────────────────────────────────────────────
 
-L["MD_ARTIFACTS"]  = "Fix the Underlight Angler's artifact UI not displaying perks."
-L["MD_CONTAINERS"] = "Invert the player's bag sorting order."
-L["MD_TRACKERS"]   = "Fix achievements getting stuck in the tracked state when completed by different characters."
+local function FixedCallback()
+    local tier = CachedCallback()
+
+    return ArtifactUI.GetArtifactItemID() == UNDERLIGHT_ANGLER_ID
+        and math.max(tier, 1)
+        or tier
+end
+
+local function UpdateFunction(callback)
+    ArtifactUI.GetArtifactTier = callback
+
+    local frame = _G.ArtifactFrame
+    if frame and frame.PerksTab then frame.PerksTab:Refresh() end
+end
 
 -- ─────────────────────────────────────────────────────────────────────────────────
---  Module Categories (Settings menu)
+--  Module Functions
 -- ─────────────────────────────────────────────────────────────────────────────────
 
-L["MC_ARTIFACTS"]  = "Legacy"
-L["MC_CONTAINERS"] = "General"
-L["MC_TRACKERS"]   = "General"
-
--- ─────────────────────────────────────────────────────────────────────────────────
---  String Resources
--- ─────────────────────────────────────────────────────────────────────────────────
-
-L["UNTRACK"] = "Untracked"
+function Module:OnEnable() UpdateFunction(FixedCallback) end
+function Module:OnDisable() UpdateFunction(CachedCallback) end
