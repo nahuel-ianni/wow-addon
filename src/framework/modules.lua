@@ -16,6 +16,8 @@ function Prototype:OnInitialize()
     self.L = L
     self.Log = ns.Log
     self.Options = ns.Options:New(ns.Addon, self)
+
+    if self.InjectOptions then self:InjectOptions() end
 end
 
 ns.Addon:SetDefaultModulePrototype(Prototype)
