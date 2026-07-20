@@ -18,14 +18,17 @@ function ns.Addon:RegisterModuleOptions(module, settings)
         self._options.args[category] = {
             type = "group",
             name = category,
+            childGroups = "tab",
             args = {}
         }
     end
 
-    for key, args in pairs(settings:GetOptions()) do
-        local uniqueKey = module:GetName() .. "_" .. key
-        self._options.args[category].args[uniqueKey] = args
-    end
+    self._options.args[category].args[module:GetName()] = {
+        type = "group",
+        name = module._name,
+        desc = module._desc,
+        args = settings:GetOptions(),
+    }
 end
 
 _G[addonName .. "_OnCompartmentClick"] = function()
