@@ -5,9 +5,11 @@ local DB_NAME = "%s_DB"
 ns.Addon.defaults = {
     profile = {
         modules = {
-            ["*"] = false,
-        }
-    }
+            ["*"] = {
+                enabled = false,
+            },
+        },
+    },
 }
 
 function ns.Addon:CreateDatabase()

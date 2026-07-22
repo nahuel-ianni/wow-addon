@@ -39,18 +39,11 @@ function Options:GetOptions() return self._options end
 
 function Options:New(addon, module)
     local object = setmetatable({}, Options)
-    local moduleName = module:GetName()
 
     object.addon = addon
     object.module = module
-    -- object.db = addon.db.profile.modules[moduleName]
+    object.db = addon.db.profile.modules[module:GetName()]
     object._options = {}
-
-    local modules = addon.db.profile.modules
-    if type(modules[moduleName]) ~= "table" then
-        modules[moduleName] = { enabled = modules[moduleName] ~= false }
-    end
-    object.db = modules[moduleName]
 
     SetModuleState(object)
 
