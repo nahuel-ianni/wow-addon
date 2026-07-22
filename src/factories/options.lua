@@ -2,13 +2,16 @@ local _, ns = ...
 
 local Options = {}
 Options.__index = Options
-
 ns.Options = Options
 
-local function SetEnabledState(object)
+-- ─────────────────────────────────────────────────────────────────────────────────
+--  Local Functions
+-- ─────────────────────────────────────────────────────────────────────────────────
+
+local function SetModuleState(object)
     local db = object.db
 
-    if db.enabled == nil then db.enabled = true end
+    if db.enabled == nil then db.enabled = false end
 
     object.module:SetEnabledState(db.enabled)
 
@@ -22,15 +25,14 @@ local function SetEnabledState(object)
         get = function() return db.enabled end,
         set = function(_, value)
             db.enabled = value
-
-            if value then
-                object.module:Enable()
-            else
-                object.module:Disable()
-            end
+            if value then object.module:Enable() else object.module:Disable() end
         end,
     }
 end
+
+-- ─────────────────────────────────────────────────────────────────────────────────
+--  Object Functions
+-- ─────────────────────────────────────────────────────────────────────────────────
 
 function Options:Get(key) return self.db[key] end
 function Options:GetOptions() return self._options end
@@ -41,17 +43,16 @@ function Options:New(addon, module)
 
     object.addon = addon
     object.module = module
+    -- object.db = addon.db.profile.modules[moduleName]
     object._options = {}
 
     local modules = addon.db.profile.modules
-
-    -- if type(modules[moduleName]) ~= "table" then
-    --     modules[moduleName] = { enabled = modules[moduleName] ~= false }
-    -- end
-
+    if type(modules[moduleName]) ~= "table" then
+        modules[moduleName] = { enabled = modules[moduleName] ~= false }
+    end
     object.db = modules[moduleName]
 
-    SetEnabledState(object)
+    SetModuleState(object)
 
     return object
 end

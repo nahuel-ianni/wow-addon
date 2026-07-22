@@ -11,13 +11,13 @@ function ns.Addon:CreateSettings()
     LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addonName, addonName)
 end
 
-function ns.Addon:RegisterModuleOptions(module, settings)
+function ns.Addon:RegisterModuleOptions(module)
     local category = module._category
 
     if not self._options.args[category] then
         self._options.args[category] = {
-            type = "group",
             name = category,
+            type = "group",
             childGroups = "tab",
             args = {}
         }
@@ -27,7 +27,7 @@ function ns.Addon:RegisterModuleOptions(module, settings)
         type = "group",
         name = module._name,
         desc = module._desc,
-        args = settings:GetOptions(),
+        args = module.Options:GetOptions(),
     }
 end
 
