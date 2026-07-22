@@ -39,6 +39,6 @@ L["MC_TRACKERS"]   = "General"
 -- ─────────────────────────────────────────────────────────────────────────────────
 
 L["CUTSCENE_SKIPPED"] = "Cutscene skipped"
-L["UNTRACK"]    = "Untracked"
-L["WB_DEPOSIT"] = "Bank deposit"
-L["WB_WARNING"] = "The warband bank API is experiencing technical difficulties.\nBank interaction's been omitted to prevent any issues."
+L["UNTRACK"]          = "Untracked"
+L["WB_DEPOSIT"]       = "Bank deposit"
+L["WB_WARNING"]       = "The warband bank experiencing technical difficulties.\nBank interaction's been omitted to prevent any issues."
