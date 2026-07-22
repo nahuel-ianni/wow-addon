@@ -64,3 +64,8 @@ function Options:AddToggle(key, name, desc)
     self._options[key] = CreateOption(self.db, key, name, desc, "toggle")
     return self
 end
+
+function Options:AddInput(key, name, desc)
+    self._options[key] = CreateOption(self.db, key, name, desc, "input", { pattern = "%d", usage = "" })
+    return self
+end
