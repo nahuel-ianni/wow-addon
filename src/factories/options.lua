@@ -50,9 +50,7 @@ function Options:New(addon, module)
     return object
 end
 
-function Options:AddToggle(key, name, desc, default)
-    if self.db[key] == nil then self.db[key] = default or false end
-
+function Options:AddToggle(key, name, desc)
     self._options[key] = {
         type = "toggle",
         name = name,
