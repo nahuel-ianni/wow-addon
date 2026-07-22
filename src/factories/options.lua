@@ -1,8 +1,11 @@
-local _, ns = ...
+local addonName, ns = ...
+local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
 local Options = {}
 Options.__index = Options
 ns.Options = Options
+
+local NAME, DESC = "N_%s", "D_%s"
 
 -- ─────────────────────────────────────────────────────────────────────────────────
 --  Local Functions
@@ -60,12 +63,12 @@ function Options:New(addon, module)
     return object
 end
 
-function Options:AddToggle(key, name, desc)
-    self._options[key] = CreateOption(self.db, key, name, desc, "toggle")
+function Options:AddToggle(key)
+    self._options[key] = CreateOption(self.db, key, L[NAME:format(key)], L[DESC:format(key)], "toggle")
     return self
 end
 
-function Options:AddInput(key, name, desc)
-    self._options[key] = CreateOption(self.db, key, name, desc, "input", { pattern = "%d", usage = "" })
+function Options:AddInput(key)
+    self._options[key] = CreateOption(self.db, key, L[NAME:format(key)], L[DESC:format(key)], "input", { pattern = "%d", usage = "" })
     return self
 end

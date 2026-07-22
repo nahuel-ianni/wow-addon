@@ -2,9 +2,9 @@ local addonName, ns = ...
 
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
-local MODULE_NAME = "MN_%s"
-local MODULE_DESC = "MD_%s"
-local MODULE_CATEGORY = "MC_%s"
+local MODULE_NAME = "N_%s"
+local MODULE_DESC = "D_%s"
+local MODULE_CATEGORY = "C_%s"
 
 local Prototype = {}
 
