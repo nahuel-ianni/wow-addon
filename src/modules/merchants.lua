@@ -9,6 +9,7 @@ local AUTO_SELL = "AUTO_SELL"
 local AUTO_REPAIR, AUTO_REPAIR_GUILD = "AUTO_REPAIR", "AUTO_REPAIR_GUILD"
 local INTERACTION_TYPE = _G.Enum.PlayerInteractionType.Merchant
 
+local IsInGuild = _G.IsInGuild
 local RepairAllItems = _G.RepairAllItems
 local SellAllJunkItems = _G.C_MerchantFrame.SellAllJunkItems
 
@@ -17,7 +18,7 @@ local SellAllJunkItems = _G.C_MerchantFrame.SellAllJunkItems
 -- ─────────────────────────────────────────────────────────────────────────────────
 
 local function RepairItems()
-    if Module.Options:Get(AUTO_REPAIR_GUILD) then RepairAllItems(true) end
+    if Module.Options:Get(AUTO_REPAIR_GUILD) and IsInGuild() then RepairAllItems(true) end
     if Module.Options:Get(AUTO_REPAIR) then RepairAllItems(false) end
 end
 
@@ -32,9 +33,9 @@ function Module:OnDisable() self:UnregisterAllEvents() end
 
 function Module:InjectOptions()
     self.Options
-        :AddToggle(AUTO_SELL, "Auto Sell", "Automatically sell junk.", true)
-        :AddToggle(AUTO_REPAIR, "Auto Repair", "Automatically repair.", true)
-        :AddToggle(AUTO_REPAIR_GUILD, "Use Guild Funds", "Use guild funds first.", true)
+        :AddToggle(AUTO_SELL, "Auto Sell", "Automatically sell junk.")
+        :AddToggle(AUTO_REPAIR, "Auto Repair", "Automatically repair.")
+        :AddToggle(AUTO_REPAIR_GUILD, "Use Guild Funds", "Use guild funds first.")
 end
 
 function Module:PLAYER_INTERACTION_MANAGER_FRAME_SHOW(_, type)
