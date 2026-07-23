@@ -11,11 +11,11 @@ local NAME, DESC = "N_%s", "D_%s"
 --  Local Functions
 -- ─────────────────────────────────────────────────────────────────────────────────
 
-local function CreateOption(db, key, name, desc, type, custom)
+local function CreateOption(db, key, type, custom)
     local option = {
         type = type,
-        name = name,
-        desc = desc,
+        name = L[NAME:format(key:upper())],
+        desc = L[DESC:format(key:upper())],
 
         get = function() return db[key] end,
         set = function(_, value) db[key] = value end,
@@ -32,8 +32,10 @@ local function SetModuleState(object)
     local options = object._options
 
     module:SetEnabledState(db.enabled)
-    options.enabled = CreateOption(db, "enabled", module._name, module._desc, "toggle",
+    options.enabled = CreateOption(db, "enabled", "toggle",
     {
+        name = module._name, 
+        desc = module._desc, 
         order = 0,
         width = "full",
         set = function(_, value)
@@ -64,11 +66,11 @@ function Options:New(addon, module)
 end
 
 function Options:AddToggle(key)
-    self._options[key] = CreateOption(self.db, key, L[NAME:format(key)], L[DESC:format(key)], "toggle")
+    self._options[key] = CreateOption(self.db, key, "toggle")
     return self
 end
 
 function Options:AddInput(key)
-    self._options[key] = CreateOption(self.db, key, L[NAME:format(key)], L[DESC:format(key)], "input", { pattern = "%d", usage = "" })
+    self._options[key] = CreateOption(self.db, key, "input", { pattern = "%d", usage = "" })
     return self
 end
