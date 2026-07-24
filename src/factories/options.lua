@@ -19,6 +19,7 @@ local function CreateOption(db, key, type, custom)
 
         get = function() return db[key] end,
         set = function(_, value) db[key] = value end,
+        disabled = function() return key ~= "enabled" and not db.enabled end,
     }
 
     if custom then for k, v in pairs(custom) do option[k] = v end end
@@ -34,8 +35,6 @@ local function SetModuleState(object)
     module:SetEnabledState(db.enabled)
     options.enabled = CreateOption(db, "enabled", "toggle",
     {
-        name = module._name, 
-        desc = module._desc, 
         order = 0,
         width = "full",
         set = function(_, value)
@@ -54,7 +53,6 @@ function Options:GetOptions() return self._options end
 
 function Options:New(addon, module)
     local object = setmetatable({}, Options)
-
     object.db = addon.db.profile.modules[module:GetName()]
     object.addon = addon
     object.module = module
@@ -71,6 +69,11 @@ function Options:AddToggle(key)
 end
 
 function Options:AddInput(key)
-    self._options[key] = CreateOption(self.db, key, "input", { pattern = "%d" }) --, usage = "" })
+    self._options[key] = CreateOption(self.db, key, "input", { pattern = "^%d+$", usage = "0-9" })
+    return self
+end
+
+function Options:AddKeybind(key)
+    self._options[key] = CreateOption(self.db, key, "keybinding")
     return self
 end
