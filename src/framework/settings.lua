@@ -18,7 +18,6 @@ function ns.Addon:RegisterModuleOptions(module)
         self._options.args[category] = {
             name = category,
             type = "group",
-            childGroups = "tab",
             args = {}
         }
     end
@@ -28,6 +27,7 @@ function ns.Addon:RegisterModuleOptions(module)
         name = module._name,
         desc = module._desc,
         args = module.Options:GetOptions(),
+        inline = true,
     }
 end
 
