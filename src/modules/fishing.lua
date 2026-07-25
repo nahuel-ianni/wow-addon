@@ -49,8 +49,8 @@ local function SetInteractCVar(enable)
 end
 
 local function StartFishing()
-    SetInteractCVar(true)
     ApplyBinding(true)
+    SetInteractCVar(true)
 end
 
 local function StopFishing()
