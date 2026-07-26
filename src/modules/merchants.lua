@@ -5,46 +5,16 @@ local Module = ns.Addon:NewModule("MERCHANTS", "AceEvent-3.0")
 --  Local Variables
 -- ─────────────────────────────────────────────────────────────────────────────────
 
-local K_SELL = "KEY_MERCHANTS_S"
-local K_REPAIR, K_REPAIR_G = "KEY_MERCHANTS_R", "KEY_MERCHANTS_G"
 local INTERACTION_TYPE = _G.Enum.PlayerInteractionType.Merchant
+local KEYS = {
+    SELL = "KEY_SELL",
+    REPAIR_GUILD = "KEY_REPAIR_GUILD",
+    REPAIR_PERSONAL = "KEY_REPAIR_PERSONAL",
+}
 
-local GetMoneyString = _G.GetMoneyString
+local RepairAllItems = _G.RepairAllItems
 local SellAllJunkItems = _G.C_MerchantFrame.SellAllJunkItems
 local IsInGuild, CanGuildBankRepair = _G.IsInGuild, _G.CanGuildBankRepair
-local GetRepairAllCost, RepairAllItems = _G.GetRepairAllCost, _G.RepairAllItems
-
--- ─────────────────────────────────────────────────────────────────────────────────
---  Local Functions
--- ─────────────────────────────────────────────────────────────────────────────────
-
-local function ReportCost()
-
-end
-
-local function RepairItems()
-    local totalCost = GetRepairAllCost()
-    local remainingCost = totalCost
-
-    if Module.Options:Get(K_REPAIR_G) and IsInGuild() and CanGuildBankRepair() then
-        RepairAllItems(true)
-        remainingCost = GetRepairAllCost()
-        if totalCost ~= remainingCost then
-            Module.L:Info("Repaired (guild):", GetMoneyString(totalCost - remainingCost))
-            totcalCost = remainingCost
-        end
-    end
-    
-    if Module.Options:Get(K_REPAIR) then
-        RepairAllItems(false)
-        remainingCost = GetRepairAllCost()
-        if totalCost ~= remainingCost then
-            Module.L:Info("Repaired:", GetMoneyString(totalCost - remainingCost))
-        end
-    end
-end
-
-local function SellJunk() SellAllJunkItems() end
 
 -- ─────────────────────────────────────────────────────────────────────────────────
 --  Module Functions
@@ -55,14 +25,15 @@ function Module:OnDisable() self:UnregisterAllEvents() end
 
 function Module:InjectOptions()
     self.Options
-        :AddToggle(K_SELL)
-        :AddToggle(K_REPAIR)
-        :AddToggle(K_REPAIR_G)
+        :AddToggle(KEYS.SELL)
+        :AddToggle(KEYS.REPAIR_GUILD)
+        :AddToggle(KEYS.REPAIR_PERSONAL)
 end
 
 function Module:PLAYER_INTERACTION_MANAGER_FRAME_SHOW(_, type)
     if type ~= INTERACTION_TYPE then return end
 
-    if self.Options:Get(K_SELL) then SellJunk() end
-    if self.Options:Get(K_REPAIR) then RepairItems() end
+    if self.Options:Get(KEYS.SELL) then SellAllJunkItems() end
+    if self.Options:Get(KEYS.REPAIR_GUILD) and IsInGuild() and CanGuildBankRepair() then RepairAllItems(true) end
+    if self.Options:Get(KEYS.REPAIR_PERSONAL) then RepairAllItems(false) end
 end

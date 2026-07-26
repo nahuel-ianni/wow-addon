@@ -6,9 +6,19 @@ local Module = ns.Addon:NewModule("FISHING", "AceEvent-3.0")
 -- ─────────────────────────────────────────────────────────────────────────────────
 
 local FISHING_SPELL = _G.C_Spell.GetSpellName(131474)
-local FISHING_SPELLS = { [131474] = true, [131490] = true, [131476] = true, [7620] = true, }
-local SOFT_TARGET_INTERACT, SOFT_TARGET_INTERACT_V = "SoftTargetInteract", "3"
 local K_FISHING, PLAYER, INTERACT_TARGET = "KEY_FISHING", "player", "INTERACTTARGET"
+
+local SOFT_TARGET = {
+    CVAR = "SoftTargetInteract",
+    VALUE = "3"
+}
+
+local FISHING_SPELLS = {
+    [7620] = true,
+    [131474] = true,
+    [131476] = true,
+    [131490] = true,
+}
 
 local After = _G.C_Timer.After
 local GetCVar, SetCVar = _G.GetCVar, _G.SetCVar
@@ -38,13 +48,13 @@ end
 
 local function SetInteractCVar(enable)
     if enable then
-        cachedCVar = cachedCVar or GetCVar(SOFT_TARGET_INTERACT)
-        return SetCVar(SOFT_TARGET_INTERACT, SOFT_TARGET_INTERACT_V)
+        cachedCVar = cachedCVar or GetCVar(SOFT_TARGET.CVAR)
+        return SetCVar(SOFT_TARGET.CVAR, SOFT_TARGET.VALUE)
     end
 
     if not cachedCVar then return end
 
-    SetCVar(SOFT_TARGET_INTERACT, cachedCVar)
+    SetCVar(SOFT_TARGET.CVAR, cachedCVar)
     cachedCVar = nil
 end
 

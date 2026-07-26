@@ -5,7 +5,7 @@ local Module = ns.Addon:NewModule("BANKERS", "AceEvent-3.0")
 --  Local Variables
 -- ─────────────────────────────────────────────────────────────────────────────────
 
-local K_DEPOSIT = "KEY_BANKERS"
+local KEY_DEPOSIT = "KEY_DEPOSIT"
 local BANK_TYPE = _G.Enum.BankType.Account
 
 local Bank = _G.C_Bank
@@ -39,10 +39,10 @@ function Module:OnEnable() self:RegisterEvent("BANKFRAME_OPENED") end
 function Module:OnDisable() self:UnregisterAllEvents() end
 
 function Module:InjectOptions()
-    self.Options:AddInput(K_DEPOSIT)
+    self.Options:AddInput(KEY_DEPOSIT)
 end
 
 function Module:BANKFRAME_OPENED()
-    local deposit = self.Options:Get(K_DEPOSIT)
+    local deposit = self.Options:Get(KEY_DEPOSIT)
     if deposit then DepositFunds(deposit) end
 end

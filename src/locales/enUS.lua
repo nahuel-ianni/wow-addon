@@ -15,11 +15,11 @@ L["N_INDICATORS"] = "Frame indicators"
 L["N_MERCHANTS"]  = "Merchant interaction"
 L["N_TRACKERS"]   = "Untrack achievements"
 
-L["N_KEY_BANKERS"] = "Gold limit"
+L["N_KEY_DEPOSIT"] = "Gold limit"
 L["N_KEY_FISHING"] = "Fishing interaction key"
-L["N_KEY_MERCHANTS_G"] = "Repair gear (guild)"
-L["N_KEY_MERCHANTS_R"] = "Repair gear"
-L["N_KEY_MERCHANTS_S"] = "Sell junk"
+L["N_KEY_REPAIR_GUILD"]    = "Repair gear (guild)"
+L["N_KEY_REPAIR_PERSONAL"] = "Repair gear"
+L["N_KEY_SELL"]    = "Sell junk"
 
 -- ─────────────────────────────────────────────────────────────────────────────────
 --  Module/Settings Descriptions
@@ -35,11 +35,11 @@ L["D_INDICATORS"] = "Remove damage and healing indicators from the player and pe
 L["D_MERCHANTS"]  = "Enable auto repair and auto sell junk options when interacting with a merchant."
 L["D_TRACKERS"]   = "Fix achievements getting stuck in the tracked state when completed by different characters."
 
-L["D_KEY_BANKERS"] = "The maximum amount of gold to keep per character."
+L["D_KEY_DEPOSIT"] = "The maximum amount of gold to keep per character."
 L["D_KEY_FISHING"] = "Keybind for casting the fishing rod and/or loot fished items."
-L["D_KEY_MERCHANTS_G"] = "Attempt to use guild funds when repairing gear items automatically."
-L["D_KEY_MERCHANTS_R"] = "Attempt to use personal funds when repairing gear items automatically."
-L["D_KEY_MERCHANTS_S"] = "Sell all junk items automatically."
+L["D_KEY_REPAIR_GUILD"]    = "Attempt to use guild funds when repairing gear items automatically."
+L["D_KEY_REPAIR_PERSONAL"] = "Attempt to use personal funds when repairing gear items automatically."
+L["D_KEY_SELL"]    = "Sell all junk items automatically."
 
 -- ─────────────────────────────────────────────────────────────────────────────────
 --  Module Categories (Settings menu)
