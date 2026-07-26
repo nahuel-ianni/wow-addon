@@ -9,7 +9,8 @@ local KEYS = { DEPOSIT = "KEY_DEPOSIT" }
 local BANK_TYPE = _G.Enum.BankType.Account
 
 local Bank = _G.C_Bank
-local GetMoney, GetMoneyString = _G.GetMoney, _G.GetMoneyString
+local GetMoney = _G.GetMoney
+local GetMoneyString = _G.GetMoneyString
 
 -- ─────────────────────────────────────────────────────────────────────────────────
 --  Local Functions

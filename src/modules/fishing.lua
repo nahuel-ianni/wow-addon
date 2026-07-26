@@ -5,20 +5,29 @@ local Module = ns.Addon:NewModule("FISHING", "AceEvent-3.0")
 --  Local Variables
 -- ─────────────────────────────────────────────────────────────────────────────────
 
+local PLAYER = "player"
+local K_FISHING = "KEY_FISHING"
 local FISHING_SPELL = _G.C_Spell.GetSpellName(131474)
-local K_FISHING, PLAYER, INTERACT_TARGET = "KEY_FISHING", "player", "INTERACTTARGET"
-local SOFT_TARGET = { CVAR = "SoftTargetInteract", VALUE = "3" }
+local INTERACT_TARGET = "INTERACTTARGET"
+
 local FISHING_SPELLS = {
     [7620] = true,
     [131474] = true,
     [131476] = true,
     [131490] = true,
 }
+local SOFT_TARGET = {
+    CVAR = "SoftTargetInteract",
+    VALUE = "3"
+}
 
 local After = _G.C_Timer.After
-local GetCVar, SetCVar = _G.GetCVar, _G.SetCVar
-local InCombatLockdown, ClearOverrideBindings = _G.InCombatLockdown, _G.ClearOverrideBindings
-local SetOverrideBinding, SetOverrideBindingSpell = _G.SetOverrideBinding, _G.SetOverrideBindingSpell
+local GetCVar = _G.GetCVar
+local SetCVar = _G.SetCVar
+local InCombatLockdown = _G.InCombatLockdown
+local SetOverrideBinding = _G.SetOverrideBinding
+local ClearOverrideBindings = _G.ClearOverrideBindings
+local SetOverrideBindingSpell = _G.SetOverrideBindingSpell
 
 local frame = _G.CreateFrame("Frame")
 local cachedCVar
@@ -26,10 +35,6 @@ local cachedCVar
 -- ─────────────────────────────────────────────────────────────────────────────────
 --  Local Functions
 -- ─────────────────────────────────────────────────────────────────────────────────
-
-local function IsFishing(unit, spellID)
-    return unit == PLAYER and FISHING_SPELLS[spellID]
-end
 
 local function ApplyBinding(interact)
     if InCombatLockdown() then return end
@@ -90,9 +95,9 @@ function Module:PLAYER_REGEN_ENABLED()
 end
 
 function Module:UNIT_SPELLCAST_CHANNEL_START(_, unit, _, spellID)
-    if IsFishing(unit, spellID) then StartFishing() end
+    if unit == PLAYER and FISHING_SPELLS[spellID] then StartFishing() end
 end
 
 function Module:UNIT_SPELLCAST_CHANNEL_STOP(_, unit, _, spellID)
-    if IsFishing(unit, spellID) then After(0.5, StopFishing) end
+    if unit == PLAYER and FISHING_SPELLS[spellID] then After(0.5, StopFishing) end
 end

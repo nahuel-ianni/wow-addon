@@ -12,9 +12,10 @@ local KEYS = {
     REPAIR_PERSONAL = "KEY_REPAIR_PERSONAL",
 }
 
+local IsInGuild = _G.IsInGuild
 local RepairAllItems = _G.RepairAllItems
 local SellAllJunkItems = _G.C_MerchantFrame.SellAllJunkItems
-local IsInGuild, CanGuildBankRepair = _G.IsInGuild, _G.CanGuildBankRepair
+local CanGuildBankRepair = _G.CanGuildBankRepair
 
 -- ─────────────────────────────────────────────────────────────────────────────────
 --  Module Functions
