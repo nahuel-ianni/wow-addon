@@ -7,12 +7,7 @@ local Module = ns.Addon:NewModule("FISHING", "AceEvent-3.0")
 
 local FISHING_SPELL = _G.C_Spell.GetSpellName(131474)
 local K_FISHING, PLAYER, INTERACT_TARGET = "KEY_FISHING", "player", "INTERACTTARGET"
-
-local SOFT_TARGET = {
-    CVAR = "SoftTargetInteract",
-    VALUE = "3"
-}
-
+local SOFT_TARGET = { CVAR = "SoftTargetInteract", VALUE = "3" }
 local FISHING_SPELLS = {
     [7620] = true,
     [131474] = true,
