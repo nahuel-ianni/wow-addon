@@ -40,11 +40,7 @@ function Frames:GetLabel(parent)
 
         self.text:SetText(text)
 
-        local width = self.text:GetStringWidth() + (paddingX * 2)
-        local height = self.text:GetStringHeight() + (paddingY * 2)
-
-        self:SetSize(width, height)
-
+        self:SetHeight(self.text:GetStringHeight() + (paddingY * 2))
         self:Show()
     end
 
