@@ -7,6 +7,7 @@ local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "enUS", true)
 
 L["N_ARTIFACTS"]  = "Artifact: Underlight's Angler"
 L["N_BANKERS"]    = "Warband bank deposit"
+L["N_CHARACTER"]  = "Improved character info"
 L["N_CINEMATICS"] = "Cinematic skip"
 L["N_CONTAINERS"] = "Sort bags"
 L["N_ENABLED"]    = "Enable"
@@ -27,6 +28,7 @@ L["N_KEY_SELL"]    = "Sell junk"
 
 L["D_ARTIFACTS"]  = "Fix the Underlight Angler's artifact UI not displaying perks.\n\nLegion restriction:\nRequires a class artifact (other than the Underlight's Angler) to be unlocked to work.\nClasses with no artifacts can't access the Angler's tree."
 L["D_BANKERS"]    = "Deposit any excess of gold on the warband bank account."
+L["D_CHARACTER"]  = "Display item levels, enchants, and gems on the character info panel."
 L["D_CINEMATICS"] = "Bypass the confirmation popup to skip cinematics."
 L["D_CONTAINERS"] = "Invert the player's bag sorting order."
 L["D_ENABLED"]    = "Enable module"
@@ -47,6 +49,7 @@ L["D_KEY_SELL"]    = "Sell all junk items automatically."
 
 L["C_ARTIFACTS"]  = "Legacy"
 L["C_BANKERS"]    = "General"
+L["C_CHARACTER"]  = "General"
 L["C_CINEMATICS"] = "General"
 L["C_CONTAINERS"] = "General"
 L["C_FISHING"]    = "General"

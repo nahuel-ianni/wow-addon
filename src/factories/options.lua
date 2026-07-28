@@ -1,6 +1,10 @@
 local addonName, ns = ...
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
+-- ─────────────────────────────────────────────────────────────────────────────────
+--  Local Variables
+-- ─────────────────────────────────────────────────────────────────────────────────
+
 local Options = {}
 Options.__index = Options
 ns.Options = Options
